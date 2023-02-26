@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="whut.rockjim.lmsservice.mapper.BookDetailMapper">
+
+    <resultMap id="BaseResultMap" type="whut.rockjim.lmsservice.entity.vo.BookDetailVO">
+            <id property="id" column="id" jdbcType="CHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="author" column="author" jdbcType="VARCHAR"/>
+            <result property="publishingHouse" column="publishing_house" jdbcType="VARCHAR"/>
+            <result property="classification" column="classification" jdbcType="VARCHAR"/>
+            <result property="publishDate" column="publish_date" jdbcType="TIMESTAMP"/>
+            <result property="number" column="number" jdbcType="INTEGER"/>
+            <result property="picture" column="picture" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="library" column="library" jdbcType="CHAR"/>
+            <result property="place" column="place" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,author,
+        publishing_house,classification,publish_date,
+        number,picture,content,
+        library,place,description,
+        state
+    </sql>
+
+    <select id="getBookDetailById" resultMap="BaseResultMap">
+        select a.id,a.name,a.author,a.publishing_house,b.classification as classification,a.publish_date,a.number,a.picture,a.content,
+               c.name as library,a.place,a.description,a.state
+        from lms_book a
+            left join lms_classification b on a.classification_id=b.id
+            left join lms_library c on a.library_id=c.id
+        where a.id=#{id}
+    </select>
+
+    <select id="getListOrderByNumber" resultMap="BaseResultMap">
+        select a.id,a.name,a.author,a.publishing_house,b.classification as classification,a.publish_date,a.number,a.picture,a.content,
+               c.name as library,a.place,a.description,a.state
+        from lms_book a
+                 left join lms_classification b on a.classification_id=b.id
+                 left join lms_library c on a.library_id=c.id
+        order by a.number desc limit 10
+    </select>
+</mapper>

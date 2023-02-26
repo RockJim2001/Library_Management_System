@@ -1,0 +1,8 @@
+aliyun:
+  oss:
+    accessKeyId: XXXXXXXXXXXXXXXXXXXXXXXXXXX  #your oss keyId
+    accessKeySecret: XXXXXXXXXXXXXXXXXXXXXXXXXXX  #your oss keySecret
+    bucketName: competition-website        #your bucketName
+    endpoint: oss-cn-nanjing.aliyuncs.com
+
+    # 由于隐私问题就不提供了
