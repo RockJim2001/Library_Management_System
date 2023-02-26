@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="whut.rockjim.aclservice.mapper.UserAuthMapper">
+
+    <resultMap id="BaseResultMap" type="whut.rockjim.aclservice.entity.UserAuth">
+            <id property="id" column="id" jdbcType="CHAR"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+            <result property="loginType" column="login_type" jdbcType="TINYINT"/>
+            <result property="token" column="token" jdbcType="VARCHAR"/>
+            <result property="ipAddress" column="ip_address" jdbcType="VARCHAR"/>
+            <result property="ipSource" column="ip_source" jdbcType="VARCHAR"/>
+            <result property="lastLoginTime" column="last_login_time" jdbcType="TIMESTAMP"/>
+            <result property="state" column="state" jdbcType="TINYINT"/>
+            <result property="userInfoId" column="user_info_id" jdbcType="CHAR"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+            <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+            <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,username,password,
+        avatar,nick_name,login_type,token,
+        ip_address,ip_source,last_login_time,
+        state,user_info_id,is_deleted,gmt_create,
+        gmt_modified
+    </sql>
+</mapper>

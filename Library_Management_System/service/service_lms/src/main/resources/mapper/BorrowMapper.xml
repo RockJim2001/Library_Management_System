@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="whut.rockjim.lmsservice.mapper.BorrowMapper">
+
+    <resultMap id="BaseResultMap" type="whut.rockjim.lmsservice.entity.Borrow">
+            <id property="id" column="id" jdbcType="CHAR"/>
+            <result property="userId" column="user_id" jdbcType="CHAR"/>
+            <result property="bookId" column="book_id" jdbcType="CHAR"/>
+            <result property="borrowDate" column="borrow_date" jdbcType="TIMESTAMP"/>
+            <result property="limit" column="limit" jdbcType="INTEGER"/>
+            <result property="returnDate" column="return_date" jdbcType="TIMESTAMP"/>
+            <result property="violationDescription" column="violation_description" jdbcType="VARCHAR"/>
+            <result property="handler" column="handler" jdbcType="CHAR"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+            <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+            <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,book_id,
+        borrow_date,limit,return_date,
+        violation_description,handler,is_deleted,
+        gmt_create,gmt_modified
+    </sql>
+</mapper>

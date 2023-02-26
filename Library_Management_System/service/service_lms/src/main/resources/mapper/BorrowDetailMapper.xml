@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="whut.rockjim.lmsservice.mapper.BorrowDetailMapper">
+
+    <resultMap id="BaseResultMap" type="whut.rockjim.lmsservice.entity.vo.BorrowDetailVO">
+            <id property="id" column="id" jdbcType="CHAR"/>
+            <result property="student" column="student" jdbcType="CHAR"/>
+            <result property="bookName" column="book_name" jdbcType="CHAR"/>
+            <result property="publishingHouse" column="publishing_house" jdbcType="CHAR"/>
+            <result property="borrowDate" column="borrow_date" jdbcType="TIMESTAMP"/>
+            <result property="limit" column="limit" jdbcType="INTEGER"/>
+            <result property="returnDate" column="return_date" jdbcType="TIMESTAMP"/>
+            <result property="violationDescription" column="violation_description" jdbcType="VARCHAR"/>
+            <result property="handler" column="handler_name" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,student,book_name,publishing_house
+        borrow_date,limit,return_date,
+        violation_description,handler_name,is_deleted,
+        gmt_create,gmt_modified
+    </sql>
+
+    <select id="getBorrowByStudent" resultMap="BaseResultMap">
+        select a.id,b.name as student,c.name as book_name,c.publishing_house as publishing_house,a.borrow_date,
+               a.limit,a.return_date,a.violation_description,d.nick_name as handler_name
+        from lms_borrow as a
+            left join lms_user_info b on a.user_id=b.id
+            left join lms_book c on a.book_id=c.id
+            left join lms_user_auth d on a.handler=d.id
+        where a.user_id=#{id}
+        order by a.gmt_modified desc
+    </select>
+
+    <select id="getBorrowDetialList" resultMap="BaseResultMap">
+        select a.id,b.name as student,c.name as book_name,c.publishing_house as publishing_house,a.borrow_date,
+               a.limit,a.return_date,a.violation_description,d.nick_name as handler_name
+        from lms_borrow as a
+                 left join lms_user_info b on a.user_id=b.id
+                 left join lms_book c on a.book_id=c.id
+                 left join lms_user_auth d on a.handler=d.id
+        order by a.gmt_modified desc
+    </select>
+
+</mapper>
